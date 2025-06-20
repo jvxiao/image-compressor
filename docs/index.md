@@ -49,7 +49,9 @@ head:
   - - meta
     - name: keywords
       content: 图片压缩，在线图片压缩，图片更换背景颜色，图片裁剪，图片格式转换， 图片水印
-
+  - - meta
+    - name: baidu-site-verification
+      content: codeva-FlTYYLuXNb
 ---
 
 
