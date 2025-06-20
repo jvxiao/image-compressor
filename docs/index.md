@@ -3,9 +3,9 @@
 layout: home
 
 hero:
-  name: "JvxTools"
-  text: "前端开发者的瑞士军刀"
-  tagline: My great project tagline
+  name: "online tools"
+  text: "开发者的瑞士军刀"
+  # tagline: My great project tagline
   actions:
     - theme: brand
       text: Markdown Examples
@@ -15,13 +15,29 @@ hero:
       link: /api-examples
 
 features:
-  - title: Feature A
-    details: Lorem ipsum dolor sit amet, consectetur adipiscing elit
-    link: https://www.jvxiao.cn
-  - title: Feature B
-    details: Lorem ipsum dolor sit amet, consectetur adipiscing elit
-  - title: Feature C
-    details: Lorem ipsum dolor sit amet, consectetur adipiscing elit
+  - title: 图片压缩
+    details: 一键瘦身，快速压缩图片体积，保留视觉细节，自动优化图片，兼顾速度与质量
+    link: https://tools.jvxiao.cn
+  - title: 图片裁剪
+    details: 精准裁切, 自由调整尺寸、比例与构图的图片裁剪技巧
+    link: https://tools.jvxiao.cn
+  - title: 自动抠图
+    details: AI 智能识别, 一键自动抠图，精准分离主体与背景
+    link: https://tools.jvxiao.cn
+  - title: 背景替换
+    details: 零基础秒换背景，轻松制作专业图片，支持纯色、渐变、自定义场景
+    link: https://tools.jvxiao.cn
+  - title: 格式转换
+    details: 打破格式壁垒,轻松解决文件无法打开、传输、编辑的兼容性难题
+    link: https://tools.jvxiao.cn
+  - title: 图片水印
+    details: 自定义水印设置，支持透明度、位置、大小调整，一键为多张图片添加统一标识，提升版权保护效率
+    link: https://tools.jvxiao.cn
+head:
+  - - meta
+    - name: keywords
+      content: 图片压缩，在线图片压缩，图片更换背景颜色，图片裁剪，图片格式转换， 图片水印
+
 ---
 
 
