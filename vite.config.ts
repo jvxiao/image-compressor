@@ -10,8 +10,8 @@ export default defineConfig({
   build: {
     rollupOptions: {
       input: {
-        index: resolve(__dirname, 'index.html'),
-        'image-compression': resolve(__dirname, 'image-compression.html'),
+        index: resolve(__dirname, './index.html'),
+        'image-compression/': resolve(__dirname, './image-compression/index.html'),
       }
     }
   }
