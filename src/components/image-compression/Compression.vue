@@ -19,6 +19,13 @@
 
     <!-- 压缩设置 -->
     <div id="compression-settings" class="mt-8 p-6 bg-white rounded-lg shadow-sm" v-if="showCompressionSetting">
+      <div class="image-list mb-6">
+        <p v-for="img in imageBox" :key="img.name" class="h-7 flex">
+          <span class="mr-20 w-80" >{{ img.name }}</span>
+          <span class="mr-48">{{ img.size }}</span>
+          <span> 待处理</span>
+        </p>
+      </div>
       <h3 class="text-xl font-semibold text-gray-800 mb-4">压缩设置</h3>
       <div class="mb-6">
         <label for="quality" class="block text-gray-700 font-medium mb-2">压缩质量</label>
