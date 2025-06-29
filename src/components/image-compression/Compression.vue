@@ -26,14 +26,11 @@
     <div class="mb-6">
       <label for="quality" class="block text-gray-700 font-medium mb-2">压缩质量</label>
       <div class="flex items-center">
-        <input type="range" id="quality" min="10" max="90" value="70" class="w-full mr-4">
-        <span id="quality-value" class="text-gray-700 font-medium">70%</span>
-      </div>
-      <div class="w-full bg-gray-200 rounded-full h-2 mt-2">
-        <div id="quality-bar" class="progress-bar bg-blue-600 h-2 rounded-full" style="width: 70%"></div>
+        <input v-model="quality" type="range" id="quality" min="10" max="90" value="70" class="w-full mr-4">
+        <span id="quality-value" class="text-gray-700 font-medium">{{quality}}%</span>
       </div>
     </div>
-    <div class="mb-6">
+    <div class="mb-6 hidden">
       <label class="block text-gray-700 font-medium mb-2">目标格式</label>
       <div class="flex space-x-4">
         <label class="flex items-center">
@@ -93,13 +90,14 @@
 </template>
 
 <script setup>
-import { computed, onMounted, ref } from 'vue';
+import { computed, onMounted, ref, watch } from 'vue';
 import { frindlyFileSize } from '../../utils/number'
 import Compressor from 'compressorjs';
 import Compare from './Compare.vue';
 const imageBox = ref([]);
 const output = ref([])
 const processing = ref(false);
+const quality = ref(70)
 
 const fileInput = ref(null);
 
@@ -113,7 +111,13 @@ onMounted(() => {
 })
 
 
-async function compressFile(file, options = { level: 'strong' }) {
+
+function initListener () {
+  const dropAreaEl = document.getElementById('drop-area');
+  dropAreaEl.addEventListener('')
+}
+
+async function compressFile(file, options = { level: 'strong', quality: '70' }) {
 
   const compressLevels = {
     slight: "85",
@@ -124,10 +128,11 @@ async function compressFile(file, options = { level: 'strong' }) {
 
   return new Promise((resolve, reject) => {
     try {
+      debugger
       const bb = new Blob([file])
       bb.arrayBuffer().then(res => {
         let buff = new Uint8Array(res)
-        const result = cjpeg(buff, ["-quality", compressLevels[options.level] || compressLevels["normal"]])
+        const result = cjpeg(buff, ["-quality", options.quality || compressLevels[options.level]  || compressLevels["normal"]])
         const blob = new Blob([result.data])
         blob.url = window.URL.createObjectURL(blob) // 创建下载的链接
         resolve(blob)
@@ -144,8 +149,9 @@ async function compressFile(file, options = { level: 'strong' }) {
 
 function doCompress() {
   const task = [];
+  console.log({ quality: quality.value.toString()})
   for(let file of imageBox.value) {
-    task.push(compressFile(file))
+    task.push(compressFile(file, { quality: quality.value.toString() }))
   }
   processing.value = true;
   Promise.all(task).then(([...result]) =>{
@@ -181,9 +187,9 @@ function highlight(e) {
   e.target.classList.add('active');
 }
 
-function unhighlight() {
+function unhighlight(e) {
   preventDefaults(e)
-  e.target.dropArea.classList.remove('active');
+  e.target.classList.remove('active');
 }
 
 
@@ -206,8 +212,8 @@ function handleInputFileChange(e) {
 
 function handleFiles(files) {
   // 限制最多上传5张图片
-  if (files.length > 5) {
-    alert('最多只能上传5张图片');
+  if (files.length > 10) {
+    alert('最多只能上传10张图片');
     fileInput.value = '';
     return;
   }
@@ -220,63 +226,6 @@ function handleFiles(files) {
   });
 
 }
-
-// 质量滑块交互
-// qualitySlider.addEventListener('input', () => {
-//     const value = qualitySlider.value;
-//     qualityValue.textContent = `${value}%`;
-//     qualityBar.style.width = `${value}%`;
-// });
-
-// 开始压缩
-// startCompression.addEventListener('click', () => {
-//     console.log('开始压缩')
-//     // 显示加载状态
-//     compressionSettings.classList.add('hidden');
-//     loadingState.classList.remove('hidden');
-//     resultsArea.classList.add('hidden');
-//     // 高亮第三步
-//     compressionSteps[1].classList.remove('active');
-//     compressionSteps[2].classList.add('active');
-
-//     // 模拟压缩过程
-//     let progress = 0;
-//     const interval = setInterval(() => {
-//         progress += 5;
-//         compressionProgress.style.width = `${progress}%`;
-//         if (progress >= 100) {
-//             clearInterval(interval);
-//             showResults();
-//         }
-//     }, 100);
-// });
-
-// 显示压缩结果
-function showResults() {
-  // loadingState.classList.add('hidden');
-  // resultsArea.classList.remove('hidden');
-
-  // 模拟生成压缩结果
-  const imageResults = document.getElementById('image-results')
-  imageResults.innerHTML = '';
-  for (let i = 0; i <output.value.length; i++) {
-    const resultCard = document.createElement('div');
-    resultCard.className = 'bg-white rounded-lg shadow-sm overflow-hidden';
-    resultCard.innerHTML = `
-           
-        `;
-    imageResults.appendChild(resultCard);
-  }
-}
-
-
-
-
-
-// // 下载所有
-// downloadAll.addEventListener('click', () => {
-//     alert('所有图片已开始下载');
-// });
 
 
 </script>

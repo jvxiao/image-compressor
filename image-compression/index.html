@@ -66,6 +66,10 @@
         header {
             width: 100%;
         }
+
+        button {
+            outline: none;
+        }
     </style>
 </head>
 <body class="bg-gray-50 font-sans">
@@ -291,7 +295,7 @@
         // const compressionProgress = document.getElementById('compression-progress');
         // const downloadAll = document.getElementById('download-all');
         // const compressAgain = document.getElementById('compress-again');
-        // const faqQuestions = document.querySelectorAll('.faq-question');
+        const faqQuestions = document.querySelectorAll('.faq-question');
         // const compressionSteps = document.querySelectorAll('.compression-step');
 
         // // 拖放功能
@@ -320,17 +324,7 @@
             dropArea.classList.remove('active');
         }
 
-        // dropArea.addEventListener('drop', handleDrop, false);
 
-        // function handleDrop(e) {
-        //     const dt = e.dataTransfer;
-        //     const files = dt.files;
-        //     handleFiles(files);
-        // }
-
-        // uploadBtn.addEventListener('click', () => {
-        //     fileInput.click();
-        // });
 
         // fileInput.addEventListener('change', () => {
         //     if (fileInput.files.length > 0) {
@@ -382,44 +376,6 @@
         //     }, 100);
         // });
 
-        // // 显示压缩结果
-        // function showResults() {
-        //     loadingState.classList.add('hidden');
-        //     resultsArea.classList.remove('hidden');
-
-        //     // 模拟生成压缩结果
-        //     imageResults.innerHTML = '';
-        //     for (let i = 0; i < 5; i++) {
-        //         const resultCard = document.createElement('div');
-        //         resultCard.className = 'bg-white rounded-lg shadow-sm overflow-hidden';
-        //         resultCard.innerHTML = `
-        //             <div class="p-4">
-        //                 <h4 class="font-semibold text-gray-800 mb-2">图片 ${i+1}</h4>
-        //                 <div class="grid grid-cols-2 gap-4 mb-4">
-        //                     <div>
-        //                         <p class="text-sm text-gray-500 mb-1">原图</p>
-        //                         <img src="https://picsum.photos/400/300?random=${i}" alt="原图" class="w-full h-40 object-cover rounded">
-        //                         <p class="text-sm text-gray-500 mt-2">2.4 MB</p>
-        //                     </div>
-        //                     <div>
-        //                         <p class="text-sm text-gray-500 mb-1">压缩后</p>
-        //                         <img src="https://picsum.photos/400/300?random=${i+10}" alt="压缩后" class="w-full h-40 object-cover rounded">
-        //                         <p class="text-sm text-green-600 mt-2">0.5 MB <span class="text-gray-500 ml-1">(减小79%)</span></p>
-        //                     </div>
-        //                 </div>
-        //                 <div class="flex justify-between">
-        //                     <button class="text-blue-600 hover:text-blue-800 text-sm font-medium">
-        //                         <i class="fas fa-eye mr-1"></i> 查看原图
-        //                     </button>
-        //                     <button class="bg-blue-600 hover:bg-blue-700 text-white text-sm font-medium py-1.5 px-4 rounded transition-colors">
-        //                         <i class="fas fa-download mr-1"></i> 下载
-        //                     </button>
-        //                 </div>
-        //             </div>
-        //         `;
-        //         imageResults.appendChild(resultCard);
-        //     }
-        // }
 
         // // 再次压缩
         // compressAgain.addEventListener('click', () => {
@@ -438,25 +394,25 @@
         // });
 
         // // FAQ交互
-        // faqQuestions.forEach(question => {
-        //     question.addEventListener('click', () => {
-        //         const answer = question.nextElementSibling;
-        //         const icon = question.querySelector('i');
+        faqQuestions.forEach(question => {
+            question.addEventListener('click', () => {
+                const answer = question.nextElementSibling;
+                const icon = question.querySelector('i');
                 
-        //         answer.classList.toggle('hidden');
-        //         icon.classList.toggle('rotate-180');
-        //     });
-        // });
+                answer.classList.toggle('hidden');
+                icon.classList.toggle('rotate-180');
+            });
+        });
 
-        // // 平滑滚动
-        // document.querySelectorAll('a[href^="#"]').forEach(anchor => {
-        //     anchor.addEventListener('click', function (e) {
-        //         e.preventDefault();
-        //         document.querySelector(this.getAttribute('href')).scrollIntoView({
-        //             behavior: 'smooth'
-        //         });
-        //     });
-        // });
+        // 平滑滚动
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function (e) {
+                e.preventDefault();
+                document.querySelector(this.getAttribute('href')).scrollIntoView({
+                    behavior: 'smooth'
+                });
+            });
+        });
     </script>
 </body>
 </html>
