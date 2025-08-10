@@ -10,9 +10,13 @@ export default defineConfig({
   build: {
     rollupOptions: {
       input: {
-        index: resolve(__dirname, './index.html'),
-        'image-compression/': resolve(__dirname, './image-compression/index.html'),
+        index: resolve(__dirname, 'index.html'),
+        'image-compression': resolve(__dirname, 'image-compression.html'),
       }
     }
-  }
+  },
+  // 显式指定项目根目录（避免路径解析错误）
+  root: __dirname,
+  // 配置基础路径（如果部署在子目录下）
+  base: './'
 })
