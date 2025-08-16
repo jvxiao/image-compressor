@@ -12,7 +12,7 @@ export default defineConfig({
       input: {
         index: resolve(__dirname, 'index.html'),
         'image-compression': resolve(__dirname, 'image-compression.html'),
-        'image-clip': resolve(__dirname, 'image-clip')
+        'image-clip': resolve(__dirname, 'image-clip.html')
       }
     }
   },
