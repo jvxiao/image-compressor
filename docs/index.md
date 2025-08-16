@@ -17,12 +17,12 @@ hero:
 features:
   - title: 图片压缩
     details: 一键瘦身，快速压缩图片体积，保留视觉细节，自动优化图片，兼顾速度与质量
-    link: https://tools.jvxiao.cn
+    link: https://tools.jvxiao.cn/image-compression.html
     icon:
       src: /icons/yasuo.svg
   - title: 图片裁剪
     details: 精准裁切, 自由调整尺寸、比例与构图的图片裁剪技巧
-    link: https://tools.jvxiao.cn
+    link: https://tools.jvxiao.cn/image-clip.html
     icon:
       src: /icons/caijian.svg
   - title: 自动抠图
